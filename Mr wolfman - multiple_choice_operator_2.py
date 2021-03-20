@@ -120,15 +120,54 @@ def elif17(int_number):
     «учебное задание», например: 18 - «восемнадцать учебных заданий», 23 - «двадцать три учебных задания»,
     31 - «тридцать одно учебное задание».
    """
-    pass
-
+    a = ('одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать',
+         'восемнадцать', 'девятнадцать',)
+    b = ('десять', 'двадцать', 'тридцать', 'сорок')
+    c = ('одно', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять')
+    d = ('учебное здание', 'учебных зданий', 'учебных здания')
+    helper = int_number//10
+    helper1 = int_number%10
+    if 10<=int_number<=40:
+        if int_number in range(11,20):
+            print(a[helper1-1], d[1])
+        elif int_number%10 in (5,6,7,8,9):
+            print(b[helper-1], c[helper1-1], d[1])
+        elif int_number%10==0:
+            print(b[helper-1], d[1])
+        elif int_number%10 in (2,3,4):
+            print(b[helper-1], c[helper1-1], d[2])
+        elif int_number%10==1:
+            print(b[helper - 1], c[helper1 - 1], d[0])
+    else:
+        print('число не входит в заданную область')
 
 def elif18(int_number):
     """
     Elif18. Дано целое число в диапазоне 100–999. Вывести строку-описание данного числа,
     например: 256 - «двести пятьдесят шесть», 814 - «восемьсот четырнадцать».
     """
-    pass
+    a = ('сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсоть', 'восемьсот', 'девятьсот')
+    b = ('десять','двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто')
+    c = ('один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять')
+    d = ('одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать',
+         'восемнадцать', 'девятнадцать',)
+    aux = int_number%100
+    helper = int_number//100
+    helper1 = aux//10
+    helper2 = int_number%10
+    if 100<=int_number<=999:
+        if int_number%100 in range(11,20):
+            print(a[helper-1], d[helper2-1])
+        elif helper1==0 and helper2!=0:
+            print(a[helper - 1], c[helper2-1])
+        elif int_number%100==0:
+            print(a[helper - 1])
+        elif int_number%10==0 and helper1!=0:
+            print(a[helper - 1], b[helper1 - 1])
+        else:
+            print(a[helper - 1], b[helper1 - 1], c[helper2-1])
+    else:
+        print('число не входит в заданную область')
 
 
 def elif19(year):
@@ -148,4 +187,43 @@ def elif20(day, month):
     «Телец» (20.4–20.5), «Близнецы» (21.5–21.6), «Рак» (22.6–22.7), «Лев» (23.7–22.8), «Дева» (23.8–22.9),
     «Весы» (23.9–22.10), «Скорпион» (23.10–22.11), «Стрелец» (23.11–21.12), «Козерог» (22.12–19.1)
     """
-    pass
+    def helper (a,b):
+        index=0
+        if b in (1,3,5,7,8,10,12) and 1<=a<=31:
+            index=a+(b*100)
+            return index
+        elif b==2 and 1<=a<=29:
+            index = a + (b * 100)
+            return index
+        elif b in (4,6,9,11) and 1<=a<=30:
+            index = a + (b * 100)
+            return index
+        else:
+            return 0
+
+    if 120 <= helper(day,month) <= 218:
+        print('Водолей')
+    elif 219 <= helper(day,month) <= 320:
+        print('Рыбы')
+    elif 321 <= helper(day, month) <= 419:
+        print('Овен')
+    elif 420 <= helper(day, month) <= 520:
+        print('Телец')
+    elif 521 <= helper(day, month) <= 621:
+        print('Близнецы')
+    elif 622 <= helper(day, month) <= 722:
+        print('Рак')
+    elif 723 <= helper(day, month) <= 822:
+        print('Лев')
+    elif 823 <= helper(day, month) <= 922:
+        print('Дева')
+    elif 923 <= helper(day, month) <= 1022:
+        print('Весы')
+    elif 1023 <= helper(day, month) <= 1122:
+        print('Скорпион')
+    elif 1123 <= helper(day, month) <= 1221:
+        print('Стрелец')
+    elif 1222 <= helper(day, month) <= 1231 or 101 <= helper(day, month) <= 119:
+        print('Козерог')
+    else:
+        print('неправильная дата')
