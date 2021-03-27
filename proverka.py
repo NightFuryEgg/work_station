@@ -1,6 +1,4 @@
-i = 4
-a = 12
-while i < 6:
-    a += i
-    i += 1
+a = 10;
+for i in range(3):
+    a -= 2
 print(a)
