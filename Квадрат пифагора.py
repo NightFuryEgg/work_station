@@ -8,19 +8,19 @@ t.up()
 t.backward(300)
 t.down()
 def side_line(a):
-    return side_kv(a)+(side_kv(a)//2)
+    return side_kv(a)+(side_kv(a)/2)
 def side_kv(a):
-    return a//(2**0.5)
+    return a/(2**0.5)
 def kv(a):
     n=3
     t.left(90)
-    t.forward(a//2)
+    t.forward(a/2)
     while n!=0:
         t.left(90)
         t.forward(a)
         n-=1
     t.left(90)
-    t.forward(a // 2)
+    t.forward(a / 2)
     t.right(90)
 def tree(n,a,x):
     t.up()
@@ -34,7 +34,7 @@ def tree(n,a,x):
         tree(n-1,side_kv(a),side_line(a))
         t.left(45)
     t.up()
-    t.backward(a+a//2)
+    t.backward(a+a/2)
     t.down()
 
 tree(n,a,x)
