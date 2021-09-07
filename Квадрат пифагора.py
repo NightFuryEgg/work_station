@@ -1,4 +1,4 @@
-import turtle as ts
+import turtle as tsp
 n=3
 a=200 #длина квадрата
 x=200 #длина полоски древа
