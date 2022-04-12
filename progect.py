@@ -5,7 +5,7 @@ class TNode:
     pass
 
 def newNode(d):
-    node=TNode
+    node=TNode()
     node.data=d
     node.left=None
     node.right=None
@@ -31,6 +31,8 @@ def lastOp(s):
     return k
 
 def prior(ch):
+    if ch == '^':
+        return 3
     if ch in '+-':
         return 1
     if ch in '/*':
@@ -43,14 +45,23 @@ def calcTree(Tree):
     else:
         n1 = calcTree(Tree.left)
         n2 = calcTree(Tree.right)
+        print(n1,n2)
         if Tree.data=='+':
             res =n1+n2
         elif Tree.data == '-':
             res =n1-n2
         elif Tree.data == '*':
             res =n1*n2
+        elif Tree.data=='/':
+            try:
+                res=n1//n2
+            except ZeroDivisionError:
+                res='Ошибка'
+            else:
+                res = n1 // n2
         else:
-            res=n1//n2
+            res=n1**n2
+        return res
 
 def calc():
     s=ent.get()
