@@ -4,6 +4,35 @@ window= tk.Tk()
 class TNode:
     pass
 
+def eror(n1,n2,s):
+    x=n1
+    y=n2
+    try:
+        if s=='+':
+            res = n1 + n2
+        elif s=='-':
+            res = n1 - n2
+        elif s=='*':
+            res = n1 * n2
+        elif s=='^':
+            res = n1 ** n2
+    except TypeError:
+        res = 'Ошибка'
+        return res
+    else:
+        if s == '+':
+            res = n1 + n2
+        elif s == '-':
+            res = n1 - n2
+        elif s == '*':
+            res = n1 * n2
+        elif s == '^':
+            res = n1 ** n2
+        return res
+
+def skob():
+
+
 def newNode(d):
     node=TNode()
     node.data=d
@@ -41,26 +70,25 @@ def prior(ch):
 
 def calcTree(Tree):
     if Tree.left==None:
-        return int(Tree.data)
+        return float(Tree.data)
     else:
         n1 = calcTree(Tree.left)
         n2 = calcTree(Tree.right)
-        print(n1,n2)
         if Tree.data=='+':
-            res =n1+n2
+            res =eror(n1,n2,Tree.data)
         elif Tree.data == '-':
-            res =n1-n2
+            res =eror(n1,n2,Tree.data)
         elif Tree.data == '*':
-            res =n1*n2
+            res =eror(n1,n2,Tree.data)
         elif Tree.data=='/':
             try:
                 res=n1//n2
             except ZeroDivisionError:
                 res='Ошибка'
             else:
-                res = n1 // n2
+                res = n1 / n2
         else:
-            res=n1**n2
+            res=eror(n1,n2, Tree.data)
         return res
 
 def calc():
