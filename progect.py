@@ -30,8 +30,21 @@ def eror(n1,n2,s):
             res = n1 ** n2
         return res
 
-def skob():
+def skob(s):
+    n_s = ''
+    while len(s) > 0:
+        char = s[0]
+        s = s[1:]
+        if char == '(':
+            temp, s = skob(s)
+            n_s += temp
+        elif char == ')':
+            print(n_s)
+            return n_s, s
+        else:
+            n_s += char
 
+    return n_s
 
 def newNode(d):
     node=TNode()
