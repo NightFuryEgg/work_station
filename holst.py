@@ -11,7 +11,18 @@ canv.pack()
 canv.create_polygon(cor)'''
 '''cor_1=[(50,50),(20,170),(180,170),(150,50)]
 canv.create_polygon(cor_1, fill='orange', outline="blue", width=3, activefill=('yellow'))'''
-canv.create_rectangle(150,100,170,120)
-canv.create_oval(150,100,170,120)
+'''canv.create_rectangle(150,80,190,120)'''
+o=[canv.create_oval(50,10,150,110, fill='lightgray'),
+canv.create_arc(50,10,150,110, start=0, extent=45, fill='red'),
+canv.create_arc(50,10,150,110, start=240, extent=120, style='chord', fill='green'),
+canv.create_arc(50,10,150,110, start=160, extent=-70, style='arc', fill='blue', width=5)]
 
+
+canv.focus_set()
+canv.bind('<Down>', lambda event:canv.move(o, 0,2))
+canv.bind('<Up>', lambda event:canv.move(o, 0,-2))
+canv.bind('<Left>', lambda event:canv.move(o, -2,0))
+canv.bind('<Right>', lambda event:canv.move(o, 2,0))
+
+print(canv.coords(o))
 window.mainloop()
