@@ -27,8 +27,8 @@ def motion():
     global xi
     global yi
     global v
-    
-    if (x-r)<=canv.coords(ball)[0]+v<(x-r)+y:
+
+    if (x-r)<=canv.coords(ball)[0]+v<(x-r)+v:
         xi=-v+0.3
     if -v <= canv.coords(ball)[0] -v <=0:
         xi=v-0.3
@@ -38,14 +38,43 @@ def motion():
         yi=v
     window.after(10,motion)
     canv.move(ball,xi,yi)
+
+def motion1():
+    global sxi
+    global syi
+    global sv
+
+    if (x - r) <= canv.coords(ball_1)[0] + sv < (x - r) + sv:
+        sxi = -sv + 0.3
+    if -v <= canv.coords(ball_1)[0] - sv <= 0:
+        sxi = sv - 0.3
+    if (y - r) <= canv.coords(ball_1)[1] + sv < (y - r) + sv:
+        syi = -sv
+    if -sv <= canv.coords(ball_1)[1] - sv <= 0:
+        syi = sv
+    if canv.coords(ball)[0]>=canv.coords(ball_1)[0]<=x-canv.coords(ball_1)[0] + sv:
+        sxi=sv-0.3
+    window.after(10, motion1)
+    canv.move(ball_1, sxi, syi)
+
 x=800
 y=300
 r=50
 v=2
+
+sv=3
+
 xi=-v
 yi=v
+
+sxi=sv
+syi=sv
+
 canv=tk.Canvas(window, width=x, height=y, bg='yellow')
 canv.pack()
 ball=canv.create_oval(60,40,60+r,40+r, fill='lightgray')
 motion()
+ball_1=canv.create_oval(700,120,700+r,120+r, fill='lightgray')
+motion1()
+
 window.mainloop()
