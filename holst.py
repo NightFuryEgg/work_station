@@ -1,7 +1,6 @@
 import  tkinter as tk
 window= tk.Tk()
-canv=tk.Canvas(window, width=200, height=200, bg='yellow')
-canv.pack()
+
 '''canv.create_line(10,10,190,60)'''
 '''canv.create_line(100,180,100,60, fill='red', dash=(10,2), width=7, activefill='blue', arrow='last', arrowshape= '20 40 20')'''
 
@@ -12,17 +11,41 @@ canv.create_polygon(cor)'''
 '''cor_1=[(50,50),(20,170),(180,170),(150,50)]
 canv.create_polygon(cor_1, fill='orange', outline="blue", width=3, activefill=('yellow'))'''
 '''canv.create_rectangle(150,80,190,120)'''
-o=[canv.create_oval(50,10,150,110, fill='lightgray'),
-canv.create_arc(50,10,150,110, start=0, extent=45, fill='red'),
-canv.create_arc(50,10,150,110, start=240, extent=120, style='chord', fill='green'),
-canv.create_arc(50,10,150,110, start=160, extent=-70, style='arc', fill='blue', width=5)]
+'''canv.create_arc(50,10,150,110, start=0, extent=45, fill='red')
+canv.create_arc(50,10,150,110, start=240, extent=120, style='chord', fill='green')
+canv.create_arc(50,10,150,110, start=160, extent=-70, style='arc', fill='blue', width=5)'''
 
 
-canv.focus_set()
-canv.bind('<Down>', lambda event:canv.move(o, 0,2))
-canv.bind('<Up>', lambda event:canv.move(o, 0,-2))
-canv.bind('<Left>', lambda event:canv.move(o, -2,0))
-canv.bind('<Right>', lambda event:canv.move(o, 2,0))
+'''canv.focus_set()
+canv.bind('<Down>', lambda event:canv.move(ball, 0,2))
+canv.bind('<Up>', lambda event:canv.move(ball, 0,-2))
+canv.bind('<Left>', lambda event:canv.move(ball, -2,0))
+canv.bind('<Right>', lambda event:canv.move(ball, 2,0))
+print(canv.coords(ball))'''
 
-print(canv.coords(o))
+def motion():
+    global xi
+    global yi
+    global v
+    
+    if (x-r)<=canv.coords(ball)[0]+v<(x-r)+y:
+        xi=-v+0.3
+    if -v <= canv.coords(ball)[0] -v <=0:
+        xi=v-0.3
+    if (y - r) <= canv.coords(ball)[1] + v < (y - r) + v:
+        yi=-v
+    if -v <= canv.coords(ball)[1] -v <=0:
+        yi=v
+    window.after(10,motion)
+    canv.move(ball,xi,yi)
+x=800
+y=300
+r=50
+v=2
+xi=-v
+yi=v
+canv=tk.Canvas(window, width=x, height=y, bg='yellow')
+canv.pack()
+ball=canv.create_oval(60,40,60+r,40+r, fill='lightgray')
+motion()
 window.mainloop()
